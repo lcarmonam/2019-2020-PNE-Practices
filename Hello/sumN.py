@@ -4,6 +4,6 @@ def sum(n):
         res += i
     return res
 
-# -- The main program starts here
+# --- The main program starts here
 print("Sum of the 20 first integers: ", sum(20))
 print("Sum of the 100 first integers: ", sum(100))
