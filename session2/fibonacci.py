@@ -7,3 +7,5 @@ for i in range(1, 9):
     a = b
     b = c
 print(series)
+for e in series:
+    print(e, end=",")
