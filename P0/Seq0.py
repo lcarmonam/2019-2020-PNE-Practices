@@ -29,5 +29,29 @@ def seq_count(seq):
             t += 1
     return  {"A": a, "C": c, "G": g, "T": t}
 
+def seq_reverse(seq):
+    return seq[::-1]
+
+def seq_complement(seq):
+    dictionary = {"A": "T", "C": "G", "G": "C", "T": "A"}
+    for key, value in dictionary.items():
+        for h in seq:
+            if h == key:
+                return value
+
+            for e in seq:
+                if e == "A":
+                    e += "T"
+                elif e == "T":
+                    e = "A"
+                elif e == "C":
+                    e = "G"
+                else:
+                    e = "C"
+                return e
+
+
+
+
 
 
