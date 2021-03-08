@@ -1,3 +1,4 @@
+import P0.Seq0
 class Seq:
     """A class for representing sequences"""
 
@@ -8,6 +9,8 @@ class Seq:
         self.strbases = strbases
 
         print("New sequence created!")
+
+
 
     def __str__(self):
         """Method called when the object is being printed"""
