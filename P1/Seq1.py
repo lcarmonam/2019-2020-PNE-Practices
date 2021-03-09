@@ -27,7 +27,9 @@ class Seq:
     @staticmethod
     def print_seqs(list_sequences):
         for i in range(0, len(list_sequences)):
-            print("Sequence", i,  ": (lenght:", list_sequences[i].len(), ")", list_sequences[i])
+            text = "Sequence" + str(i) + ": (lenght:" + str(list_sequences[i].len()) + ")" + str(list_sequences[i])
+            termcolor.cprint(text, "yellow")
+
 
     def __str__(self):
         """Method called when the object is being printed"""
