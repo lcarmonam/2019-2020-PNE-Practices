@@ -8,8 +8,9 @@ def print_result(sequence):
 
 
 print("-----| Practice 1, Exercise 10 |------")
-s1 = Seq()
+
 for gene in gene_list:
+    s1 = Seq()
     s1.seq_read_fasta(gene + ".txt")
     print_result(s1)
 
