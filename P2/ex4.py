@@ -4,7 +4,7 @@ from Client0 import Client
 
 
 PRACTICE = 2
-EXERCISE = 3
+EXERCISE = 4
 
 
 print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
@@ -14,9 +14,11 @@ IP = "212.128.253.130"
 c = Client(IP, PORT)
 
 colorama.init()
-response_one = c.talk(Fore.BLUE+ "Message 1---")
+answer_one = c.debug_talk(Fore.BLUE + "Message 1---")
+print(Fore.YELLOW + answer_one)
+answer_two = c.debug_talk(Fore.BLUE + "Message 2: Testing !!!")
+print(Fore.YELLOW + answer_two)
 
-print(Fore.YELLOW + response_one)
 
 
 

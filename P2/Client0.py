@@ -33,3 +33,6 @@ class Client:
         s.close()
         # Return the response
         return "From server: " + response
+
+    def debug_talk(self, message):
+        return self.talk(message)
