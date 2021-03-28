@@ -2,7 +2,7 @@ import socket
 
 # Configure the Server's IP and PORT
 PORT = 12000
-IP = "212.128.253.139"
+IP = "212.128.253.130"
 MAX_OPEN_REQUESTS = 5
 
 # Counting the number of connections
@@ -32,7 +32,7 @@ try:
         print("Message from client: {}".format(msg))
 
         # Send the messag
-        message = "Hello from the teacher's server"
+        message = "Hello from the teacher's server jfpod"
         # We must write bytes, not a string
         clientsocket.send(message.encode())
         clientsocket.close()
