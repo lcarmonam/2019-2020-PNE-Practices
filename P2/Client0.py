@@ -32,7 +32,8 @@ class Client:
         # Close the socket
         s.close()
         # Return the response
-        return "From server: " + response
+        response = "From server: " + response
+        return response
 
     def debug_talk(self, message):
         return self.talk(message)
