@@ -78,8 +78,11 @@ while True:
         elif command == "REV":
             server_utils.rev(cs, argument)
 
+        elif command == "GENE":
+            server_utils.gene(cs, argument)
+
         else:
             response = "Not available command"
             cs.send(str(response).encode())
-        # -- Close the data socketcl
+        # -- Close the data socket
         cs.close()
