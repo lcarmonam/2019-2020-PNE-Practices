@@ -1,11 +1,15 @@
 import socket
 import termcolor
-
+import pathlib
 
 # -- Server network parameters
 IP = "127.0.0.1"
 PORT = 8080
+HTML_ASSETS = "./html/"
 
+def read_html_file(filename):
+    content = pathlib.Path(filename).read_text()
+    return content
 
 def process_client(s):
     # -- Receive the request message
@@ -19,6 +23,15 @@ def process_client(s):
 
     # -- The request line is the first
     req_line = lines[0]
+    request = req_line.split(' ')[1]
+    print("Request", request)
+    path_name = request.split("?")[0]
+    try:
+        parameters = request.split("?")[1]
+        print("Arguments", parameters)
+    except IndexError:
+        pass
+    print("Resource requested:", path_name)
 
     """print("Request line: ", end="")"""
     termcolor.cprint(req_line, "green")
@@ -31,24 +44,35 @@ def process_client(s):
     # Body (content to send)
 
     # This new contents are written in HTML language
-    body = """
-    <!DOCTYPE html>
-    <html lang="en" dir="ltr">
-      <head>
-        <meta charset="utf-8">
-        <title>Green server</title>
-      </head>
-      <body style="background-color: lightgreen;">
-        <h1>GREEN SERVER</h1>
-        <p>I am the Green Server! :-)</p>
-      </body>
-    </html>
-    """
+
     # -- Status line: We respond that everything is ok (200 code)
     status_line = "HTTP/1.1 200 OK\n"
 
     # -- Add the Content-Type header
     header = "Content-Type: text/html\n"
+
+    if path_name == "/":
+        body = read_html_file(HTML_ASSETS + "index.html")
+    elif "/info/" in path_name:
+        # where is the letter? string.split('/')[-1] "A or G or C or T"
+        try:
+            body = read_html_file(HTML_ASSETS + path_name.split('/')[-1] + ".html")
+        except FileNotFoundError:
+            body = read_html_file(HTML_ASSETS + "error.html")
+    else:
+        body = read_html_file(HTML_ASSETS + "error.html")
+
+
+
+    """if path_name == "/info/A":
+        body = read_html_file(HTML_ASSETS + "A.html")
+    elif path_name == "/info/C":
+        body = read_html_file(HTML_ASSETS + "C.html")
+    elif path_name == "/info/G":
+        body = read_html_file(HTML_ASSETS + "G.html")
+    elif path_name == "/info/T":
+        body = read_html_file(HTML_ASSETS + "T.html")"""
+
 
     # -- Add the Content-Length
     header += f"Content-Length: {len(body)}\n"
@@ -84,7 +108,6 @@ while True:
         ls.close()
         exit()
     else:
-
         # Service the client
         process_client(cs)
 
