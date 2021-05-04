@@ -43,25 +43,23 @@ def info(arg, operation):
     contents = read_template_html_file("./html/operation.html").render(context=context)
     return contents
 
-def comp(argument, operation):
-    comp_seq = Seq(argument)
-    calculation = comp_seq.complement()
+def comp(sequence):
+    comp_seq = Seq(sequence)
     context = {
-        "operation_name": operation,
-        "operation_contents": argument,
-        "operation_calculation": calculation
+        "operation_contents": sequence,
+        "operation_name": "Comp",
+        "operation_result": comp_seq.complement()
     }
     contents = read_template_html_file("./html/operation.html").render(context=context)
     return contents
 
 
-def rev(argument, operation):
-    rev_seq = Seq(argument)
-    calculation = rev_seq.reverse()
+def rev(sequence):
+    rev_seq = Seq(sequence)
     context = {
-        "operation_name": operation,
-        "operation_contents": argument,
-        "operation_calculation": calculation
+        "operation_contents": sequence,
+        "operation_name": "Rev",
+        "operation_result": rev_seq.reverse()
     }
     contents = read_template_html_file("./html/operation.html").render(context=context)
     return contents
