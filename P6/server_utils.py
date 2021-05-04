@@ -27,18 +27,18 @@ def get(list_sequences, seq_number):
     contents = read_template_html_file("./html/get.html").render(context=context)
     return contents
 
-def info(arg, operation):
-    seq_info = Seq(arg)
-    lenght = len(arg)
+def info(sequence):
+    seq_info = Seq(sequence)
+    lenght = len(sequence)
     count_bases = ""
     for base, count in seq_info.count().items():
         bases_info = str(base) + ": " + str(count) + " (" + str(round(count / lenght * 100, 1)) + "%)" + "\n"
         count_bases += bases_info
-    calculation = ("Sequence: " + str(arg) + "\n" + "Total length: " + str(lenght) + "\n" + count_bases)
+    calculation = ("Total length: " + str(lenght) + "\n" + count_bases)
     context = {
-        "operation_name": operation,
-        "operation_contents": arg,
-        "operation_calculation": calculation
+        "operation_contents": sequence,
+        "operation_name": "Info",
+        "operation_result": calculation
     }
     contents = read_template_html_file("./html/operation.html").render(context=context)
     return contents
