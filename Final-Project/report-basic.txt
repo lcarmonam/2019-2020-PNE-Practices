@@ -720,3 +720,24 @@ http://127.0.0.1:8080/chromosomeLength?species=mouse&chromo=
         <p><a href="/">Main page</a></p>
       </body>
     </html>
+
+TEST 8: valid string and string
+
+*Input 1
+http://127.0.0.1:8080/chromosomeLength?species=mouse&chromo=lucia
+
+*Output
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in the ensemble</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main page</a></p>
+      </body>
+    </html>

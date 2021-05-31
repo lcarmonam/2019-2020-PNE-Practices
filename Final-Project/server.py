@@ -10,12 +10,23 @@ def read_html_file(filename):
     content = pathlib.Path(filename).read_text()
     return content
 
-
 PORT = 8080
 SERVER = "rest.ensembl.org"
 PARAMETERS = "?content-type=application/json"
 connection = http.client.HTTPConnection(SERVER)
 
+DICT_GENES = {
+"FRAT1": "ENSG00000165879",
+"ADA": "ENSG00000196839",
+"FXN": "ENSG00000165060",
+"RNU6_269P": "ENSG00000212379",
+"MIR633": "ENSG00000207552",
+"TTTY4C": "ENSG00000226906",
+"RBMY2YP": "ENSG00000227633",
+"FGFR3": "ENSG00000068078",
+"KDR": "ENSMUSG00000062960",
+"ANK2": "ENSG00000145362",
+}
 
 def info_species(inf):
     try:
@@ -26,7 +37,6 @@ def info_species(inf):
     response = connection.getresponse()
     decoded = json.loads(response.read().decode())
     return decoded
-
 
 class TestHandler(http.server.BaseHTTPRequestHandler):
 
@@ -50,6 +60,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             # reads the index from the file
             contents = Path('Error.html').read_text()  # opens the error.html file
 
+            context = {}
             try:
                 if data_1 == "/":  # Opens the index.html file
                     contents = Path("index.html").read_text()  # Reads the index from the fil
@@ -113,11 +124,11 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                 # ------PART 2: KARYOTYOPE-------
 
                 elif data_1 == "/karyotype":
-                    endpoint = "info/assembly/"  # this endpoint returns Ok
+                    ENDPOINT = "info/assembly/"  # this endpoint returns Ok
                     data_2 = data[1]  # Stores the information after the '?'
                     data_3 = data_2.split("=")[1]
                     print(data_3)
-                    species = info_species(endpoint + data_3 + PARAMETERS)["karyotype"]
+                    species = info_species(ENDPOINT + data_3 + PARAMETERS)["karyotype"]
                     print(species)
 
                     # the console will print the number of chromosomes of the specie selected in the limit
@@ -168,6 +179,34 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                               <p>The length of the Chromosome is: {option["length"]}</p>
                                            </body>
                                            </html>"""
+
+                elif data_1 == "/geneSeq":
+                    ENDPOINT = "/sequence/id/"  # this endpoint returns Ok
+                    data_2 = data[1]  # Stores the information after the '?'
+                    gene = data_2.split("=")[1]
+                    print(gene)
+                    try:
+                        for key, id in DICT_GENES.items():
+                            genes = info_species(ENDPOINT + id + PARAMETERS)
+                            print(genes)
+                            if key == gene:
+                                contents = f"""                             
+                                               <!DOCTYPE html>
+                                               <html lang="en">
+                                               <head>
+                                                    <meta charset="utf-8">
+                                                    <title>SEQUENCE OF A GIVEN GENE</title>
+                                                </head>
+                                                <body style="background-color: lightgreen">
+                                                <h1>Gene sequence</h1>
+                                                <p><a href="/">Main page</a></p>
+                                                   <p>The sequence is:> {genes["seq"]}</p>
+                                                </body>
+                                                </html>"""
+
+                    except KeyError:
+                        print("The gene is not inside our dictionary. Choose one of the following",list(DICT_GENES.keys()))
+
                 else:
                     contents = Path('Error.html').read_text()
 
