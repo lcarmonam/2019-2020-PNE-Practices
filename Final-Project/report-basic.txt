@@ -51,7 +51,7 @@ http://127.0.0.1:8080
 </html>
 
 --> ListSpecies endpoint
-*TEST 1: (empty blank)
+*TEST 1: empty blank
 
 *Input
 http://127.0.0.1:8080/listSpecies?limit=
@@ -70,10 +70,10 @@ http://127.0.0.1:8080/listSpecies?limit=
      <p>The names of the species are:</p>
      <p>little spotted kiwi
      Indian glassy fish
-blue tit
-narwhal
-American beaver
-lumpfish
+     blue tit
+     narwhal
+     American beaver
+     lumpfish
 Chinese hamster
 channel bull blenny
 Golden Hamster
@@ -378,3 +378,344 @@ mummichog
 pig
 Komodo dragon
 greater amberjack
+
+--> ListSpecies endpoint
+*TEST 2: valid integer
+
+*Input
+http://127.0.0.1:8080/listSpecies?limit=2
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="utf-8">
+     <title>LIST OF SPECIES IN THE BROWSER</title>
+</head>
+<body style="background-color: lightgreen">
+<h1>List of Species in the browser</h1>
+<p><a href="/">Main page</a></p>
+     <p>Total number of species is: 267 </p>
+     <p>The limit you have selected is: 2</p>
+     <p>The names of the species are:</p>
+     <p>little spotted kiwi</p><p>Indian glassy fish</p>
+</body>
+</html>
+
+--> ListSpecies endpoint
+*TEST 3: invalid integer
+
+*Input
+http://127.0.0.1:8080/listSpecies?limit=-5
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in the ensemble</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main page</a></p>
+      </body>
+    </html>
+
+--> ListSpecies endpoint
+*TEST 4: invalid integer
+
+*Input
+http://127.0.0.1:8080/listSpecies?limit=600
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in the ensemble</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main page</a></p>
+      </body>
+    </html>
+
+--> ListSpecies endpoint
+*TEST 5: string
+
+*Input
+http://127.0.0.1:8080/listSpecies?limit=Bye
+
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in the ensemble</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main page</a></p>
+      </body>
+    </html>
+
+--->karyotype endpoint
+
+TEST 1: valid string
+
+*Input
+http://127.0.0.1:8080/karyotype?Specie=human
+
+*Output
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="utf-8">
+    <title>KARYOTYPE OF A SPECIFIC SPECIES</title>
+</head>
+<body style="background-color: lightgreen">
+<h1>Karyotype</h1>
+<p><a href="/">Main page</a></p>
+<p>The name of the chromosomes are:</p>
+ <p> 1 </p>
+ <p> 2 </p>
+ <p> 3 </p>
+ <p> 4 </p>
+ <p> 5 </p>
+ <p> 6 </p>
+ <p> 7 </p>
+ <p> 8 </p>
+ <p> 9 </p>
+ <p> 10 </p>
+ <p> 11 </p>
+ <p> 12 </p>
+ <p> 13 </p>
+ <p> 14 </p>
+ <p> 15 </p>
+ <p> 16 </p>
+ <p> 17 </p>
+ <p> 18 </p>
+ <p> 19 </p>
+ <p> 20 </p>
+ <p> 21 </p>
+ <p> 22 </p>
+ <p> X </p>
+ <p> Y </p>
+ <p> MT </p>
+</body>
+</html>
+
+TEST 2: invalid string
+
+*Input
+http://127.0.0.1:8080/karyotype?Specie=lucia
+
+*Output
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in the ensemble</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main page</a></p>
+      </body>
+    </html>
+
+TEST 3: empty blank
+
+*Input
+http://127.0.0.1:8080/karyotype?Specie=
+
+*Output
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in the ensemble</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main page</a></p>
+      </body>
+    </html>
+
+TEST 4: integer
+
+*Input
+http://127.0.0.1:8080/karyotype?Specie=5
+
+*Output
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in the ensemble</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main page</a></p>
+      </body>
+    </html>
+
+--->  chromosomeLength endpoint
+
+TEST 1: valid string and valid integer
+
+*Input 1
+http://127.0.0.1:8080/chromosomeLength?species=mouse&chromo=Y
+
+*Output
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <meta charset="utf-8">
+     <title>LENGHT OF THE SELECTED CHROMOSOME</title>
+</head>
+<body style="background-color: lightgreen">
+<h1>Chromosome lenght</h1>
+<p><a href="/">Main page</a></p>
+     <p>The length of the Chromosome is: 91455967</p>
+</body>
+</html>
+
+TEST 2: invalid string and invalid integer
+
+*Input 1
+http://127.0.0.1:8080/chromosomeLength?species=lucia&chromo=-1
+
+*Output
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in the ensemble</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main page</a></p>
+      </body>
+    </html>
+
+TEST 3: invalid string and valid integer
+
+*Input 1
+http://127.0.0.1:8080/chromosomeLength?species=lucia&chromo=13
+
+*Output
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in the ensemble</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main page</a></p>
+      </body>
+    </html>
+
+TEST 4: valid string and invalid integer
+
+*Input 1
+http://127.0.0.1:8080/chromosomeLength?species=mouse&chromo=-1
+
+*Output
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in the ensemble</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main page</a></p>
+      </body>
+    </html>
+
+TEST 5: empty blank and empty blank
+
+*Input 1
+http://127.0.0.1:8080/chromosomeLength?species=&chromo=
+
+*Output
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in the ensemble</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main page</a></p>
+      </body>
+    </html>
+
+TEST 6: empty blank and valid integer
+
+*Input 1
+http://127.0.0.1:8080/chromosomeLength?species=&chromo=13
+
+*Output
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in the ensemble</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main page</a></p>
+      </body>
+    </html>
+
+TEST 7: valid string and empty blank
+
+*Input 1
+http://127.0.0.1:8080/chromosomeLength?species=mouse&chromo=
+
+*Output
+<!DOCTYPE html>
+    <html lang="en" dir="ltr">
+      <head>
+        <meta charset="utf-8">
+        <title>DATA ERROR</title>
+      </head>
+      <body style="background-color: red;">
+        <h1>ERROR</h1>
+        <p>Welcome to the DATA ERROR server</p>
+        <p>If you are here is because the data you have entered does not exist in the ensemble</p>
+        <p>Sorry!!!</p>
+        <p><a href="/">Main page</a></p>
+      </body>
+    </html>

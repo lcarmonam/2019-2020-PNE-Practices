@@ -81,7 +81,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                                                 <p>The names of the species are:</p>
                                                 """
                                 for element in species:  # We create a for to list all tipe of species when the limit is empty
-                                    contents += f"""<p>{element["common_name"]} </p></body></html>"""
+                                    contents += f"""<p>{element["display_name"]} </p></body></html>"""
 
                         elif int(data_3) > 267:
                             contents = Path('Error.html').read_text()
@@ -147,25 +147,27 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
                     print(specie)
                     chromosome = data_4.split("=")[1]
                     print(chromosome)
+                    print(info_species(endpoint + specie + PARAMETERS))
                     species = info_species(endpoint + specie + PARAMETERS)["top_level_region"]
                     print(species)
 
+
                     for option in species:
-                        if option["coord_system"] == "chromosome":
-                            if option["name"] == chromosome:
-                                contents = f"""
-                                               <!DOCTYPE html>
-                                               <html lang="en">
-                                               <head>
-                                                    <meta charset="utf-8">
-                                                    <title>LENGHT OF THE SELECTED CHROMOSOME</title>
-                                               </head>
-                                               <body style="background-color: lightgreen">   
-                                               <h1>Chromosome lenght</h1>
-                                               <p><a href="/">Main page</a></p>
-                                                  <p>The length of the Chromosome is: {option["length"]}</p>
-                                               </body>
-                                               </html>"""
+                        print(option)
+                        if option["name"] == chromosome:
+                            contents = f"""
+                                           <!DOCTYPE html>
+                                           <html lang="en">
+                                           <head>
+                                                <meta charset="utf-8">
+                                                <title>LENGHT OF THE SELECTED CHROMOSOME</title>
+                                           </head>
+                                           <body style="background-color: lightgreen">   
+                                           <h1>Chromosome lenght</h1>
+                                           <p><a href="/">Main page</a></p>
+                                              <p>The length of the Chromosome is: {option["length"]}</p>
+                                           </body>
+                                           </html>"""
                 else:
                     contents = Path('Error.html').read_text()
 
