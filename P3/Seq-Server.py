@@ -5,7 +5,7 @@ list_sequences = ["TGTGAACATTCTGCGCTGCGCCTGGGCGGGTTTCTT", "CAGGAGGGGACTGTCCGAGCT
             "CTCCCAGCTCCCTGGAGTCGTAGAATGTCCTCTCCACCCC", "GAACTCCTGCAGGTTCTGCAGGCCCTCGAAAGT",
             "CTGCAGGGGGACGCTTGAAAGGAGGAGCCGGGGGGAA"]
 # Configure the Server's IP and PORT
-PORT = 8091
+PORT = 8090
 IP = "127.0.0.1"
 
 # -- Step 1: create the socket
@@ -62,6 +62,7 @@ while True:
         else:
             command = formatted_message[0]
             argument = formatted_message[1]
+            print(argument)
 
         if command == "PING":
             server_utils.ping(cs)

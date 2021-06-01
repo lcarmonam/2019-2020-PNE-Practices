@@ -1,5 +1,6 @@
 from Seq1 import Seq
 
+gene_list = ["U5", "ADA", "FRAT1", "FXN", "RNU6_269P"]
 
 def print_result(i, sequence):
     print("Sequence " + str(i) + ": (lenght:" + str(sequence.len()) + ") " + str(sequence))
@@ -15,4 +16,4 @@ print_result("", s1)
 
 for gene in gene_list:
     s1.seq_read_fasta(gene + ".txt")
-    print_result(s1)
+    print_result(gene, s1)

@@ -78,6 +78,7 @@ class TestHandler(http.server.BaseHTTPRequestHandler):
             contents = su.get(LIST_SEQUENCES, number_sequence)
         elif path_name == "/gene":
             gene = arguments["gene"][0]
+            print(gene)
             contents = su.gene(gene)
         elif path_name == "/operation":
             sequence = arguments["sequence"][0]

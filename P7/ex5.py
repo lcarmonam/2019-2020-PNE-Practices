@@ -30,6 +30,7 @@ try:
     for key, id in DICT_GENES.items():
         connection.request("GET", ENDPOINT + id + PARAMETERS)
         response = connection.getresponse()
+        print(response)
         if response.status == 200:
             response_dict = json.loads(response.read().decode())
             print(json.dumps(response_dict, indent=4, sort_keys=True))

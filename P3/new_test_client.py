@@ -6,7 +6,7 @@ EXERCISE = 7
 print(f"-----| Practice {PRACTICE}, Exercise {EXERCISE} |------")
 
 IP = "127.0.0.1"
-PORT = 8091
+PORT = 8090
 first_sequence = "TGTGAACATTCTGCGCTGCGCCTGGGCGGGTTTCTT"
 c = Client(IP, PORT)
 print(c)
