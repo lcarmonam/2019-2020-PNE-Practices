@@ -402,7 +402,6 @@ http://127.0.0.1:8080/listSpecies?limit=2
 </body>
 </html>
 
---> ListSpecies endpoint
 *TEST 3: invalid integer
 
 *Input
@@ -423,7 +422,6 @@ http://127.0.0.1:8080/listSpecies?limit=-5
       </body>
     </html>
 
---> ListSpecies endpoint
 *TEST 4: invalid integer
 
 *Input
@@ -444,7 +442,6 @@ http://127.0.0.1:8080/listSpecies?limit=600
       </body>
     </html>
 
---> ListSpecies endpoint
 *TEST 5: string
 
 *Input
@@ -574,7 +571,7 @@ http://127.0.0.1:8080/karyotype?Specie=5
       </body>
     </html>
 
---->  chromosomeLength endpoint
+---> chromosomeLength endpoint
 
 TEST 1: valid string and valid integer
 
